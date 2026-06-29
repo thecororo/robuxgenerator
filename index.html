@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Free Robux Generator</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
 
     <!-- CONTENT LOCKER -->
     <script type="text/javascript">
@@ -18,275 +18,751 @@
             padding: 0;
             box-sizing: border-box;
         }
+
+        :root {
+            --primary: #00ff88;
+            --primary-dim: #00cc6a;
+            --dark: #0a0a12;
+            --darker: #06060a;
+            --card: #12121e;
+            --card-light: #1a1a2e;
+            --border: #252540;
+            --text: #e8e8f0;
+            --muted: #8b8ba3;
+            --danger: #ff3366;
+            --danger-glow: rgba(255, 51, 102, 0.4);
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background: #f5f5f5;
+            background: var(--darker);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            position: relative;
+            overflow-x: hidden;
         }
+
+        /* Animated background */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+        }
+
+        .bg-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            opacity: 0.4;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: rgba(0, 255, 136, 0.15);
+            top: -100px;
+            left: -100px;
+            animation: float-orb 8s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: rgba(0, 150, 255, 0.1);
+            bottom: -50px;
+            right: -50px;
+            animation: float-orb 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float-orb {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.95); }
+        }
+
+        /* Glass card */
+        .glass-card {
+            background: rgba(18, 18, 30, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(37, 37, 64, 0.6);
+            border-radius: 24px;
+            box-shadow: 
+                0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(0, 255, 136, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.3), transparent);
+        }
+
         .container {
             width: 100%;
-            max-width: 400px;
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            padding: 40px 30px;
+            max-width: 440px;
+            padding: 40px 32px;
             text-align: center;
         }
+
+        /* Roblox logo */
         .logo {
-            font-size: 42px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 38px;
             font-weight: 900;
-            color: #1a1a2e;
-            letter-spacing: -1px;
+            color: var(--text);
+            letter-spacing: 2px;
             margin-bottom: 8px;
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.2);
         }
-        .logo span {
-            display: inline-block;
+
+        .logo-accent {
+            color: var(--primary);
         }
-        .step {
-            font-size: 18px;
+
+        .subtitle {
+            color: var(--muted);
+            font-size: 13px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+        }
+
+        /* Step indicator */
+        .step-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: rgba(0, 255, 136, 0.08);
+            border: 1px solid rgba(0, 255, 136, 0.15);
+            border-radius: 100px;
+            font-size: 13px;
             font-weight: 600;
-            color: #333;
+            color: var(--primary);
             margin-bottom: 24px;
         }
+
+        .step-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--primary);
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.2); }
+        }
+
+        /* Shield & added line */
         .added-line {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            margin-bottom: 20px;
-            font-size: 18px;
-            color: #333;
+            gap: 10px;
+            margin-bottom: 24px;
+            padding: 16px;
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid rgba(0, 255, 136, 0.1);
+            border-radius: 16px;
         }
+
         .shield-icon {
-            width: 28px;
-            height: 28px;
-            background: #00c853;
-            border-radius: 6px;
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dim));
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-shrink: 0;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+            animation: shield-pulse 2s ease-in-out infinite;
         }
+
+        @keyframes shield-pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(0, 255, 136, 0.5); }
+        }
+
         .shield-icon svg {
-            width: 16px;
-            height: 16px;
-            fill: white;
+            width: 20px;
+            height: 20px;
+            fill: var(--darker);
         }
-        .robux-amount {
-            font-weight: 700;
-        }
-        .error-text {
-            color: #d32f2f;
+
+        .added-text {
             font-size: 16px;
-            font-weight: 700;
-            line-height: 1.5;
-            margin-bottom: 24px;
+            color: var(--text);
         }
+
+        .robux-amount {
+            font-weight: 800;
+            color: var(--primary);
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+        }
+
+        /* Error box */
+        .error-box {
+            background: linear-gradient(135deg, rgba(255, 51, 102, 0.1), rgba(255, 51, 102, 0.05));
+            border: 1px solid rgba(255, 51, 102, 0.2);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .error-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--danger), transparent);
+            animation: shimmer-line 3s infinite;
+        }
+
+        @keyframes shimmer-line {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .error-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 51, 102, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            animation: error-bounce 1s ease-in-out infinite;
+        }
+
+        @keyframes error-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
+        .error-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--danger);
+        }
+
+        .error-text {
+            color: var(--danger);
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
         .error-text .botlike {
             text-transform: uppercase;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--danger), #ff6699);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
+
+        .error-text strong {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        /* Verify button */
         .verify-btn {
             width: 100%;
-            padding: 16px 24px;
-            background: #d32f2f;
+            padding: 18px 24px;
+            background: linear-gradient(135deg, var(--danger), #ff5588);
             color: white;
             border: none;
-            border-radius: 14px;
-            font-size: 20px;
-            font-weight: 700;
+            border-radius: 16px;
+            font-size: 18px;
+            font-weight: 800;
             cursor: pointer;
-            transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
+            transition: all 0.3s;
+            box-shadow: 0 8px 32px var(--danger-glow);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
+
+        .verify-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .verify-btn:hover::before {
+            left: 100%;
+        }
+
         .verify-btn:hover {
-            background: #b71c1c;
-            transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(211, 47, 47, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px var(--danger-glow);
         }
+
         .verify-btn:active {
             transform: translateY(0);
         }
-        .typing {
-            display: inline;
-        }
-        .cursor {
-            display: inline-block;
-            width: 2px;
-            height: 18px;
-            background: #333;
-            animation: blink 1s infinite;
-            vertical-align: middle;
-            margin-left: 2px;
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-        .hidden { display: none; }
 
-        /* Step 1 styles */
-        .step1-container {
-            text-align: center;
+        /* Security badges */
+        .security-badges {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
         }
+
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .badge svg {
+            width: 14px;
+            height: 14px;
+            color: var(--primary);
+        }
+
+        /* Hidden utility */
+        .hidden { display: none !important; }
+
+        /* ========== STEP 1: Username & Amount ========== */
         .step1-container h1 {
-            font-size: 28px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 26px;
             font-weight: 800;
-            color: #1a1a2e;
-            margin-bottom: 8px;
+            color: var(--text);
+            margin-bottom: 6px;
         }
-        .step1-container p {
-            color: #666;
+
+        .step1-container .tagline {
+            color: var(--muted);
             font-size: 14px;
-            margin-bottom: 24px;
+            margin-bottom: 32px;
         }
+
         .username-input {
             width: 100%;
-            padding: 14px 16px;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
+            padding: 16px 20px;
+            background: var(--card);
+            border: 2px solid var(--border);
+            border-radius: 14px;
             font-size: 16px;
+            color: var(--text);
             text-align: center;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
             outline: none;
-            transition: border-color 0.2s;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
         }
+
+        .username-input::placeholder {
+            color: var(--muted);
+        }
+
         .username-input:focus {
-            border-color: #d32f2f;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(0, 255, 136, 0.1);
         }
+
         .amount-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-        .amount-btn {
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            background: white;
-            font-size: 14px;
-            font-weight: 600;
-            color: #333;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .amount-btn.active {
-            border-color: #d32f2f;
-            background: #ffebee;
-            color: #d32f2f;
-        }
-        .generate-btn {
-            width: 100%;
-            padding: 16px;
-            background: #d32f2f;
-            color: white;
-            border: none;
-            border-radius: 14px;
-            font-size: 18px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .generate-btn:hover {
-            background: #b71c1c;
+            gap: 10px;
+            margin-bottom: 24px;
         }
 
-        /* Step 2 - Loading */
-        .loading-container {
+        .amount-btn {
+            padding: 14px 8px;
+            background: var(--card);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--muted);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .amount-btn:hover {
+            border-color: rgba(0, 255, 136, 0.3);
+            color: var(--text);
+        }
+
+        .amount-btn.active {
+            border-color: var(--primary);
+            background: rgba(0, 255, 136, 0.08);
+            color: var(--primary);
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.1);
+        }
+
+        .generate-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dim));
+            color: var(--darker);
+            border: none;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 8px 30px rgba(0, 255, 136, 0.25);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .generate-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .generate-btn:hover::before {
+            left: 100%;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 255, 136, 0.35);
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .stat {
             text-align: center;
+        }
+
+        .stat-value {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        /* ========== STEP 2: Loading ========== */
+        .loading-container {
             padding: 20px 0;
         }
-        .spinner {
-            width: 60px;
-            height: 60px;
-            border: 4px solid #f0f0f0;
-            border-top-color: #d32f2f;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            animation: spin 1s linear infinite;
+
+        .spinner-ring {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            position: relative;
         }
+
+        .spinner-ring::before,
+        .spinner-ring::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            border: 3px solid transparent;
+        }
+
+        .spinner-ring::before {
+            width: 100%;
+            height: 100%;
+            border-top-color: var(--primary);
+            border-right-color: rgba(0, 255, 136, 0.2);
+            animation: spin 1.2s linear infinite;
+        }
+
+        .spinner-ring::after {
+            width: 60%;
+            height: 60%;
+            top: 20%;
+            left: 20%;
+            border-bottom-color: var(--primary);
+            border-left-color: rgba(0, 255, 136, 0.2);
+            animation: spin 0.8s linear infinite reverse;
+        }
+
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+
         .loading-text {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 16px;
+            font-size: 15px;
+            color: var(--text);
+            font-weight: 600;
+            margin-bottom: 8px;
         }
-        .progress-bar-container {
+
+        .loading-sub {
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 24px;
+        }
+
+        .progress-track {
             width: 100%;
-            height: 8px;
-            background: #f0f0f0;
-            border-radius: 4px;
+            height: 6px;
+            background: var(--card);
+            border-radius: 3px;
             overflow: hidden;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
         }
-        .progress-bar-fill {
+
+        .progress-fill {
             height: 100%;
-            background: #d32f2f;
-            border-radius: 4px;
-            transition: width 0.3s;
-            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--primary-dim));
+            border-radius: 3px;
+            transition: width 0.4s ease;
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
         }
-        .log-box {
-            background: #f8f8f8;
-            border-radius: 8px;
-            padding: 12px;
+
+        .progress-percent {
+            font-size: 13px;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .terminal {
+            background: var(--darker);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
             text-align: left;
             font-family: 'Courier New', monospace;
             font-size: 11px;
-            color: #666;
-            height: 100px;
+            height: 120px;
             overflow-y: auto;
+            position: relative;
         }
-        .log-box .log-green { color: #00c853; }
-        .log-box .log-red { color: #d32f2f; }
-        .log-box .log-yellow { color: #ffa000; }
 
-        /* Step 3 - Adding animation */
+        .terminal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+        }
+
+        .terminal-line {
+            line-height: 1.8;
+            opacity: 0;
+            animation: fade-in-line 0.3s forwards;
+        }
+
+        @keyframes fade-in-line {
+            to { opacity: 1; }
+        }
+
+        .terminal-line.green { color: var(--primary); }
+        .terminal-line.yellow { color: #ffcc00; }
+        .terminal-line.red { color: var(--danger); }
+        .terminal-line.white { color: var(--text); }
+
+        /* ========== STEP 3: Adding ========== */
         .adding-container {
-            text-align: center;
             padding: 20px 0;
         }
+
+        .robux-icon-large {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dim));
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            box-shadow: 0 0 40px rgba(0, 255, 136, 0.3);
+            animation: icon-float 2s ease-in-out infinite;
+        }
+
+        @keyframes icon-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .robux-icon-large svg {
+            width: 40px;
+            height: 40px;
+            fill: var(--darker);
+        }
+
         .adding-amount {
-            font-size: 36px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 48px;
             font-weight: 900;
-            color: #00c853;
+            color: var(--primary);
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.4);
             margin-bottom: 8px;
+            line-height: 1;
         }
-        .adding-text {
-            font-size: 16px;
-            color: #666;
+
+        .adding-label {
+            font-size: 15px;
+            color: var(--muted);
+            margin-bottom: 24px;
         }
+
+        .pulse-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
         .pulse-dot {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background: #00c853;
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
             border-radius: 50%;
-            margin-left: 4px;
-            animation: pulse 1s infinite;
+            animation: dot-pulse 1.4s ease-in-out infinite;
         }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
+
+        .pulse-dot:nth-child(2) { animation-delay: 0.2s; }
+        .pulse-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes dot-pulse {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 10px var(--primary); }
+        }
+
+        /* ========== LOCKER OFFER CARDS (Custom styling) ========== */
+        /* These styles will apply when the locker content loads */
+        .offer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .offer-item {
+            padding: 16px 20px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .offer-item:hover {
+            border-color: var(--primary);
+            background: var(--card-light);
+            transform: translateX(4px);
+        }
+
+        .offer-item::before {
+            content: '→';
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        .offer-waiting {
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .offer-waiting::before {
+            content: '';
+            width: 16px;
+            height: 16px;
+            border: 2px solid var(--border);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .container {
+                padding: 32px 20px;
+            }
+            .logo {
+                font-size: 32px;
+            }
+            .amount-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- STEP 1: Username & Amount -->
-    <div class="container" id="step1">
-        <div class="step1-container">
-            <div class="logo" style="margin-bottom: 4px;">ROBLOX</div>
-            <h1>Free Robux</h1>
-            <p>Enter your username and select amount</p>
+    <!-- Background effects -->
+    <div class="bg-grid"></div>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
 
-            <input type="text" class="username-input" id="username" placeholder="Roblox Username" autocomplete="off">
+    <!-- STEP 1: Username & Amount -->
+    <div class="glass-card container" id="step1">
+        <div class="step1-container">
+            <div class="logo">ROB<span class="logo-accent">BLOX</span></div>
+            <div class="subtitle">Free Robux Generator</div>
+
+            <input type="text" class="username-input" id="username" placeholder="Enter Roblox Username" autocomplete="off">
 
             <div class="amount-grid">
                 <button class="amount-btn" onclick="selectAmount(1000)" data-amount="1000">1,000</button>
@@ -297,51 +773,102 @@
                 <button class="amount-btn" onclick="selectAmount(50000)" data-amount="50000">50,000</button>
             </div>
 
-            <button class="generate-btn" onclick="startGeneration()">GENERATE</button>
+            <button class="generate-btn" onclick="startGeneration()">Generate Robux</button>
+
+            <div class="stats-row">
+                <div class="stat">
+                    <div class="stat-value" id="onlineCount">2,847</div>
+                    <div class="stat-label">Online</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">1.2M+</div>
+                    <div class="stat-label">Generated</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">Free</div>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- STEP 2: Loading -->
-    <div class="container hidden" id="step2">
+    <div class="glass-card container hidden" id="step2">
         <div class="loading-container">
-            <div class="logo" style="margin-bottom: 20px;">ROBLOX</div>
-            <div class="spinner"></div>
+            <div class="logo" style="margin-bottom: 24px;">ROB<span class="logo-accent">BLOX</span></div>
+            <div class="spinner-ring"></div>
             <div class="loading-text" id="loadingText">Connecting to Roblox servers...</div>
-            <div class="progress-bar-container">
-                <div class="progress-bar-fill" id="progressBar"></div>
+            <div class="loading-sub" id="loadingSub">Please wait while we verify your account</div>
+            <div class="progress-track">
+                <div class="progress-fill" id="progressBar"></div>
             </div>
-            <div class="log-box" id="logBox">
-                <div class="log-green">&gt; Initializing connection...</div>
-            </div>
+            <div class="progress-percent" id="progressPercent">0%</div>
+            <div class="terminal" id="terminal"></div>
         </div>
     </div>
 
     <!-- STEP 3: Adding Robux -->
-    <div class="container hidden" id="step3">
+    <div class="glass-card container hidden" id="step3">
         <div class="adding-container">
-            <div class="logo" style="margin-bottom: 20px;">ROBLOX</div>
+            <div class="logo" style="margin-bottom: 24px;">ROB<span class="logo-accent">BLOX</span></div>
+            <div class="robux-icon-large">
+                <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
             <div class="adding-amount" id="addingAmount">0</div>
-            <div class="adding-text">free Robux added<span class="pulse-dot"></span><span class="pulse-dot" style="animation-delay: 0.2s"></span><span class="pulse-dot" style="animation-delay: 0.4s"></span></div>
+            <div class="adding-label">free Robux added to your account</div>
+            <div class="pulse-dots">
+                <div class="pulse-dot"></div>
+                <div class="pulse-dot"></div>
+                <div class="pulse-dot"></div>
+            </div>
         </div>
     </div>
 
     <!-- STEP 4: Verification (THE LOCKER GATE) -->
-    <div class="container hidden" id="step4">
-        <div class="logo">ROBLOX</div>
-        <div class="step">Step 4: Verify your account!</div>
+    <div class="glass-card container hidden" id="step4">
+        <div class="logo">ROB<span class="logo-accent">BLOX</span></div>
+        <div class="subtitle">Account Verification</div>
+
+        <div class="step-badge">
+            <div class="dot"></div>
+            Step 4: Verify your account!
+        </div>
 
         <div class="added-line">
             <div class="shield-icon">
                 <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
             </div>
-            <span><span class="robux-amount" id="finalAmount">1700</span> free Robux added...</span>
+            <span class="added-text"><span class="robux-amount" id="finalAmount">5,000</span> free Robux added...</span>
         </div>
 
-        <div class="error-text">
-            ERROR! We detected your behavior as <span class="botlike">BOTLIKE</span>. Click <strong>Verify</strong> to prove that you are a human and to receive your <span id="errorAmount">1700</span> Robux for free...
+        <div class="error-box">
+            <div class="error-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+            </div>
+            <div class="error-text">
+                ERROR! We detected your behavior as <span class="botlike">BOTLIKE</span>.<br>
+                Click <strong>Verify</strong> to prove that you are a human and to receive your <span id="errorAmount">5,000</span> Robux for free...
+            </div>
         </div>
 
-        <button class="verify-btn" onclick="_qW()">Verify</button>
+        <button class="verify-btn" onclick="_qW()">
+            <span style="position: relative; z-index: 1;">Verify Now</span>
+        </button>
+
+        <div class="security-badges">
+            <div class="badge">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                SSL Secure
+            </div>
+            <div class="badge">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                Encrypted
+            </div>
+            <div class="badge">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                Verified
+            </div>
+        </div>
     </div>
 
     <script>
@@ -359,8 +886,13 @@
         function startGeneration() {
             username = document.getElementById('username').value.trim();
             if (!username || username.length < 3) {
-                document.getElementById('username').style.borderColor = '#d32f2f';
-                setTimeout(() => document.getElementById('username').style.borderColor = '#e0e0e0', 1000);
+                const input = document.getElementById('username');
+                input.style.borderColor = 'var(--danger)';
+                input.style.boxShadow = '0 0 0 4px rgba(255, 51, 102, 0.1)';
+                setTimeout(() => {
+                    input.style.borderColor = '';
+                    input.style.boxShadow = '';
+                }, 800);
                 return;
             }
 
@@ -372,21 +904,23 @@
 
         function runLoadingSequence() {
             const logs = [
-                { text: `> Authenticating user: ${username}...`, color: 'log-green' },
-                { text: `> Account found. ID: ${Math.floor(Math.random() * 900000000 + 100000000)}`, color: 'log-green' },
-                { text: '> Checking current Robux balance...', color: '' },
-                { text: `> Balance: ${Math.floor(Math.random() * 200)} R$`, color: '' },
-                { text: '> Establishing secure connection...', color: 'log-green' },
-                { text: '> Encrypting transaction data...', color: '' },
-                { text: '> Bypassing server verification...', color: 'log-yellow' },
-                { text: `> Allocating ${selectedAmount.toLocaleString()} Robux...`, color: 'log-green' },
-                { text: '> Injecting Robux into account...', color: 'log-green' },
-                { text: '> Waiting for server response...', color: '' }
+                { text: `> Authenticating user: ${username}...`, color: 'green' },
+                { text: `> Account found. ID: ${Math.floor(Math.random() * 900000000 + 100000000)}`, color: 'green' },
+                { text: '> Checking current Robux balance...', color: 'white' },
+                { text: `> Balance: ${Math.floor(Math.random() * 200)} R$`, color: 'white' },
+                { text: '> Establishing secure connection...', color: 'green' },
+                { text: '> Encrypting transaction data...', color: 'white' },
+                { text: '> Bypassing server verification...', color: 'yellow' },
+                { text: `> Allocating ${selectedAmount.toLocaleString()} Robux...`, color: 'green' },
+                { text: '> Injecting Robux into account...', color: 'green' },
+                { text: '> Waiting for server response...', color: 'white' }
             ];
 
             const progressBar = document.getElementById('progressBar');
-            const logBox = document.getElementById('logBox');
+            const progressPercent = document.getElementById('progressPercent');
+            const terminal = document.getElementById('terminal');
             const loadingText = document.getElementById('loadingText');
+            const loadingSub = document.getElementById('loadingSub');
 
             let progress = 0;
             let logIndex = 0;
@@ -395,27 +929,29 @@
                 progress += Math.random() * 10 + 3;
                 if (progress > 100) progress = 100;
                 progressBar.style.width = progress + '%';
+                progressPercent.textContent = Math.floor(progress) + '%';
 
-                if (logIndex < logs.length && Math.random() > 0.4) {
+                if (logIndex < logs.length && Math.random() > 0.35) {
                     const log = logs[logIndex];
                     const div = document.createElement('div');
+                    div.className = 'terminal-line ' + log.color;
+                    div.style.animationDelay = '0.1s';
                     div.textContent = log.text;
-                    if (log.color) div.className = log.color;
-                    logBox.appendChild(div);
-                    logBox.scrollTop = logBox.scrollHeight;
+                    terminal.appendChild(div);
+                    terminal.scrollTop = terminal.scrollHeight;
                     logIndex++;
 
-                    if (progress < 30) loadingText.textContent = 'Connecting to Roblox servers...';
-                    else if (progress < 60) loadingText.textContent = 'Authenticating account...';
-                    else if (progress < 85) loadingText.textContent = 'Injecting Robux...';
-                    else loadingText.textContent = 'Finalizing transaction...';
+                    if (progress < 30) { loadingText.textContent = 'Connecting to Roblox servers...'; loadingSub.textContent = 'Establishing secure handshake'; }
+                    else if (progress < 60) { loadingText.textContent = 'Authenticating account...'; loadingSub.textContent = `Verifying user: ${username}`; }
+                    else if (progress < 85) { loadingText.textContent = 'Injecting Robux...'; loadingSub.textContent = `Allocating ${selectedAmount.toLocaleString()} R$`; }
+                    else { loadingText.textContent = 'Finalizing transaction...'; loadingSub.textContent = 'Waiting for server confirmation'; }
                 }
 
                 if (progress >= 100) {
                     clearInterval(interval);
-                    setTimeout(() => showAddingStep(), 600);
+                    setTimeout(() => showAddingStep(), 500);
                 }
-            }, 180);
+            }, 160);
         }
 
         function showAddingStep() {
@@ -424,17 +960,17 @@
 
             const addingAmount = document.getElementById('addingAmount');
             let current = 0;
-            const increment = Math.ceil(selectedAmount / 40);
+            const increment = Math.ceil(selectedAmount / 50);
 
             const countInterval = setInterval(() => {
                 current += increment;
                 if (current >= selectedAmount) {
                     current = selectedAmount;
                     clearInterval(countInterval);
-                    setTimeout(() => showVerificationStep(), 1200);
+                    setTimeout(() => showVerificationStep(), 1000);
                 }
                 addingAmount.textContent = current.toLocaleString();
-            }, 50);
+            }, 40);
         }
 
         function showVerificationStep() {
@@ -444,6 +980,16 @@
             document.getElementById('finalAmount').textContent = selectedAmount.toLocaleString();
             document.getElementById('errorAmount').textContent = selectedAmount.toLocaleString();
         }
+
+        // Live online counter
+        setInterval(() => {
+            const count = document.getElementById('onlineCount');
+            if (count) {
+                let current = parseInt(count.textContent.replace(/,/g, ''));
+                current += Math.floor(Math.random() * 12) - 4;
+                count.textContent = current.toLocaleString();
+            }
+        }, 2500);
 
         document.getElementById('username').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') startGeneration();
